@@ -18,19 +18,29 @@ public class MovPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
+            //transform.position += Vector3.right * movSpeed * Time.deltaTime;
+            if (!Mathf.Approximately(transform.rotation.y, 0f))
+            {
+                transform.rotation = Quaternion.identity;
+            }
             transform.position += Vector3.right * movSpeed * Time.deltaTime;
+            //transform.RotateAround(transform.position, transform.up, 180f);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
+            if (Mathf.Approximately(transform.rotation.y, 0f))
+            {
+                transform.RotateAround(transform.position, transform.up, 180f);
+            }
             transform.position += Vector3.left * movSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.forward * movSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             transform.position += Vector3.back * movSpeed * Time.deltaTime;
         }
